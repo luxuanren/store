@@ -4,6 +4,7 @@ public class Goods {
 	private int id;
 	private String name;
 	private float price;
+	private int inventory;
 	private GoodsType type;
 	private boolean isValid;
 	private String title;
@@ -16,6 +17,12 @@ public class Goods {
 	}
 	public String getName() {
 		return name;
+	}
+	public int getInventory() {
+		return inventory;
+	}
+	public void setInventory(int inventory) {
+		this.inventory = inventory;
 	}
 	public void setName(String name) {
 		this.name = name;
