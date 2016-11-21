@@ -1,7 +1,11 @@
 package com.store.dao;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.stereotype.Repository;
 
 import com.store.model.User;
@@ -16,8 +20,22 @@ public class UserDao {
 	@Autowired
 	private JdbcTemplate template;
 	
-	public boolean FindUser(String email, String password) {
-		return false;
+	public User FindUser(String email, String password) {
+		final String sql = "select * from user where u_email=? and u_password=?";
+		final User user = new User();
+		template.query(sql, new String[]{email, password}, new RowCallbackHandler(){
+
+			@Override
+			public void processRow(ResultSet rs) throws SQLException {
+				user.setId(rs.getInt(1));
+				user.setUsername(rs.getString(2));
+				user.setEmail(rs.getString(3));
+				user.setPassword(rs.getString(4));
+				user.setLevel(rs.getInt(5));
+				user.setAccount(rs.getFloat(6));
+			}
+		});
+		return user.getId() == 0 ? null : user;
 	}
 	public boolean findUserName(String username) {
 		return false;
