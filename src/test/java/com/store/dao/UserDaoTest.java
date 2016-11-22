@@ -1,10 +1,11 @@
 package com.store.dao;
 
+import static org.hamcrest.Matchers.closeTo;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertThat;
-import static org.hamcrest.Matchers.*;
+
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.unitils.UnitilsJUnit4;
@@ -12,7 +13,6 @@ import org.unitils.spring.annotation.SpringApplicationContext;
 import org.unitils.spring.annotation.SpringBean;
 
 import com.store.model.User;
-import com.store.model.UserLevel;
 
 @SpringApplicationContext({"dispatcher-servlet.xml","classpath:applicationContext.xml"})
 public class UserDaoTest extends UnitilsJUnit4{
@@ -73,20 +73,15 @@ public class UserDaoTest extends UnitilsJUnit4{
 		
 		userDao.alterPassword(uId, newPassword, oldPassword);
 		assertNotSame(null, userDao.FindUser(email, oldPassword));
-		
 	}
 
 	@Test
-	public void testUpdateUserLevel() {
+	public void testUpdateUserIntegral() {
 		String email = "867773467@qq.com";
 		String password = "123";
 		String uId = "1000";
-		UserLevel oldLevel = UserLevel.COMMEN;
-		UserLevel newLevel = UserLevel.BRONZE;
-		userDao.updateUserLevel(uId, newLevel);
-		assertSame(newLevel.toInt(), userDao.FindUser(email, password).getLevel());
-		userDao.updateUserLevel(uId, oldLevel);
-		assertSame(oldLevel.toInt(), userDao.FindUser(email, password).getLevel());
+		userDao.updateUserIntegral(uId, 10);
+		assertThat(userDao.FindUser(email, password).getIntegral(), closeTo(10, 0.0001));
 	}
 
 	@Test

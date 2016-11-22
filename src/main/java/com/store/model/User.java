@@ -7,6 +7,7 @@ public class User {
 	private String password;
 	private UserLevel level;
 	private double account;
+	private double integral;
 
 	public int getId() {
 		return id;
@@ -54,6 +55,14 @@ public class User {
 
 	public void setAccount(double account) {
 		this.account = account;
+	}
+
+	public double getIntegral() {
+		return integral;
+	}
+
+	public void setIntegral(double integral) {
+		this.integral = integral;
 	}
 
 }

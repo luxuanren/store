@@ -10,7 +10,7 @@ import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.stereotype.Repository;
 
 import com.store.model.User;
-import com.store.model.UserLevel;
+
 
 /**
  * when user create an account, then we insert a clause in user,mart and cart
@@ -37,6 +37,7 @@ public class UserDao {
 				user.setPassword(rs.getString(4));
 				user.setLevel(rs.getInt(5));
 				user.setAccount(rs.getFloat(6));
+				user.setIntegral(rs.getDouble(7));
 			}
 		});
 		return user.getId() == 0 ? null : user;
@@ -66,10 +67,10 @@ public class UserDao {
 		return template.update(sql, args, argTypes) == 1;
 	}
 
-	public boolean updateUserLevel(String uId, UserLevel level) {
-		String sql = "UPDATE user SET u_level=? WHERE u_id=?";
-		Object[] args = new Object[] { level.toInt(), uId };
-		int[] argTypes = new int[] { Types.INTEGER, Types.VARCHAR };
+	public boolean updateUserIntegral(String uId, double score) {
+		String sql = "UPDATE user SET u_integral=u_integral+? WHERE u_id=?";
+		Object[] args = new Object[] {score, uId };
+		int[] argTypes = new int[] { Types.DOUBLE, Types.VARCHAR };
 		return template.update(sql, args, argTypes) == 1;
 	}
 
