@@ -2,13 +2,17 @@ package com.store.dao;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNotSame;
-import static org.junit.Assert.fail;
-
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertThat;
+import static org.hamcrest.Matchers.*;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.unitils.UnitilsJUnit4;
 import org.unitils.spring.annotation.SpringApplicationContext;
 import org.unitils.spring.annotation.SpringBean;
+
+import com.store.model.User;
+import com.store.model.UserLevel;
 
 @SpringApplicationContext({"dispatcher-servlet.xml","classpath:applicationContext.xml"})
 public class UserDaoTest extends UnitilsJUnit4{
@@ -25,44 +29,80 @@ public class UserDaoTest extends UnitilsJUnit4{
 	
 	@Test
 	public void testFindUser() {
-		fail("Not yet implemented");
+		String email = "867773467@qq.com";
+		String password = "123";
+		assertNotSame(null, userDao.FindUser(email, password));
+		
+		password = "456";
+		assertSame(null, userDao.FindUser(email, password));
 	}
 
 	@Test
 	public void testFindUserName() {
-		String email = "867773467@qq.com";
-		String password = "123";
-		assertNotSame(null, userDao.FindUser(email, password));
+		String username = "luxuanren";
+		assertSame(true, userDao.findUserName(username));
+		username = "lxr";
+		assertSame(false, userDao.findUserName(username));
 	}
 
 	@Test
 	public void testFindEmail() {
-		
+		String email = "867773467@qq.com";
+		assertSame(true, userDao.findEmail(email));
+		email = "exuanlu@ericsson.com";
+		assertSame(false, userDao.findEmail(email));
 	}
 
 	@Test
 	public void testAddUser() {
-		fail("Not yet implemented");
+		User user = new User();
+		user.setUsername("user1");
+		user.setEmail("user1@test.com");
+		user.setPassword("123");
+		assertSame(true, userDao.addUser(user));
 	}
 
 	@Test
 	public void testAlterPassword() {
-		fail("Not yet implemented");
+		String email = "867773467@qq.com";
+		int uId = 1000;
+		String oldPassword = "123";
+		String newPassword = "456";
+		userDao.alterPassword(uId, oldPassword, newPassword);
+		assertNotSame(null, userDao.FindUser(email, newPassword));
+		
+		userDao.alterPassword(uId, newPassword, oldPassword);
+		assertNotSame(null, userDao.FindUser(email, oldPassword));
+		
 	}
 
 	@Test
 	public void testUpdateUserLevel() {
-		fail("Not yet implemented");
+		String email = "867773467@qq.com";
+		String password = "123";
+		String uId = "1000";
+		UserLevel oldLevel = UserLevel.COMMEN;
+		UserLevel newLevel = UserLevel.BRONZE;
+		userDao.updateUserLevel(uId, newLevel);
+		assertSame(newLevel.toInt(), userDao.FindUser(email, password).getLevel());
+		userDao.updateUserLevel(uId, oldLevel);
+		assertSame(oldLevel.toInt(), userDao.FindUser(email, password).getLevel());
 	}
 
 	@Test
-	public void testReduceAccount() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testChargeAccount() {
-		fail("Not yet implemented");
+	public void testChargeAndReduceAccount() {
+		String email = "867773467@qq.com";
+		String password = "123";
+		String uId = "1000";
+		double base = 100;
+		double num = 100;
+		double error = 0.0001;
+		
+		assertThat(userDao.FindUser(email, password).getAccount(), closeTo(base, error));
+		userDao.reduceAccount(uId, num);
+		assertThat(userDao.FindUser(email, password).getAccount(), closeTo(base - num, error));
+		userDao.chargeAccount(uId, num);
+		assertThat(userDao.FindUser(email, password).getAccount(), closeTo(base, error));
 	}
 
 }

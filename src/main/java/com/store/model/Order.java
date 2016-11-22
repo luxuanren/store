@@ -1,57 +1,49 @@
 package com.store.model;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Order {
 	private int id;
-	private Date date;
+	private String date;
 	private int userId;
-	private ArrayList<TradeItem> goodsList;
+	private ArrayList<TradeItem> tradeList;
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	public Date getDate() {
+
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+
+	public void setDate(String date) {
 		this.date = date;
 	}
+
 	public int getUserId() {
 		return userId;
 	}
+
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-	public ArrayList<TradeItem> getGoodsList() {
-		return goodsList;
+
+	public ArrayList<TradeItem> getTradeList() {
+		return tradeList;
 	}
-	public void setGoodsList(ArrayList<TradeItem> goodsList) {
-		this.goodsList = goodsList;
-	}
-	public void setGoodsList(String goodsList) {
-		this.goodsList = new ArrayList<TradeItem>();
-		TradeItem item = null;
-		for (String info : goodsList.split("&")) {
-			item = new TradeItem();
-			String[] values = info.split(":");
-			item.setGoodsId(Integer.valueOf(values[0]));
-			item.setTradeNum(Integer.valueOf(values[1]));
-			item.setEvaluate(Integer.valueOf(values[2]) == 1);
-			this.goodsList.add(item);
+
+	public void setTradeList(String data) {
+		String regex = "\\d+:\\d+:\\d";
+		Matcher matcher = Pattern.compile(regex).matcher(data);
+		tradeList = new ArrayList<>();
+		while (matcher.find()) {
+			tradeList.add(new TradeItem(matcher.group()));
 		}
 	}
-//	public static void main(String[] args) {
-//		String string = "100:2:1&12:1:0";
-//		Order order = new Order();
-//		order.setGoodsList(string);
-//		for (TradeItem item : order.getGoodsList()) {
-//			System.out.println(item.getGoodsId());
-//			System.out.println(item.getTradeNum());
-//			System.out.println(item.isEvaluate());
-//		}
-//	}
 }

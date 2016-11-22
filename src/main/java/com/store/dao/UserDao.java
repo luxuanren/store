@@ -2,6 +2,7 @@ package com.store.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -10,8 +11,11 @@ import org.springframework.stereotype.Repository;
 
 import com.store.model.User;
 import com.store.model.UserLevel;
+
 /**
- * when user create an account, then we insert a clause in user,mart and cart table 
+ * when user create an account, then we insert a clause in user,mart and cart
+ * table
+ * 
  * @author luxuanren
  *
  */
@@ -19,11 +23,11 @@ import com.store.model.UserLevel;
 public class UserDao {
 	@Autowired
 	private JdbcTemplate template;
-	
+
 	public User FindUser(String email, String password) {
-		final String sql = "select * from user where u_email=? and u_password=?";
+		final String sql = "SELECT * FROM user WHERE u_email=? AND u_password=?";
 		final User user = new User();
-		template.query(sql, new String[]{email, password}, new RowCallbackHandler(){
+		template.query(sql, new String[] { email, password }, new RowCallbackHandler() {
 
 			@Override
 			public void processRow(ResultSet rs) throws SQLException {
@@ -37,25 +41,49 @@ public class UserDao {
 		});
 		return user.getId() == 0 ? null : user;
 	}
+
 	public boolean findUserName(String username) {
-		return false;
+		final String sql = "SELECT COUNT(*) FROM user WHERE u_name=?";
+		return template.queryForObject(sql, new String[] { username }, Integer.class) > 0;
 	}
+
 	public boolean findEmail(String email) {
-		return false;
+		final String sql = "SELECT COUNT(*) FROM user WHERE u_email=?";
+		return template.queryForObject(sql, new String[] { email }, Integer.class) > 0;
 	}
+
 	public boolean addUser(User user) {
-		return false;
+		String sql = "INSERT INTO user(u_name,u_email,u_password) VALUES(?,?,?)";
+		String[] args = new String[] { user.getUsername(), user.getEmail(), user.getPassword() };
+		int[] argTypes = new int[] { Types.VARCHAR, Types.VARCHAR, Types.VARCHAR };
+		return template.update(sql, args, argTypes) == 1;
 	}
-	public boolean alterPassword(String uId, String password) {
-		return false;
+
+	public boolean alterPassword(int uId, String oldPassword, String newPassword) {
+		String sql = "UPDATE user SET u_password=? WHERE u_id=? AND u_password=?";
+		Object[] args = new Object[] { newPassword, uId, oldPassword };
+		int[] argTypes = new int[] { Types.VARCHAR, Types.INTEGER, Types.VARCHAR};
+		return template.update(sql, args, argTypes) == 1;
 	}
+
 	public boolean updateUserLevel(String uId, UserLevel level) {
-		return false;
+		String sql = "UPDATE user SET u_level=? WHERE u_id=?";
+		Object[] args = new Object[] { level.toInt(), uId };
+		int[] argTypes = new int[] { Types.INTEGER, Types.VARCHAR };
+		return template.update(sql, args, argTypes) == 1;
 	}
-	public boolean reduceAccount(String uId, float num) {
-		return false;
+
+	public boolean reduceAccount(String uId, double num) {
+		String sql = "UPDATE user SET u_account=u_account-? WHERE u_id=?";
+		Object[] args = new Object[] { num, uId };
+		int[] argTypes = new int[] { Types.FLOAT, Types.VARCHAR };
+		return template.update(sql, args, argTypes) == 1;
 	}
-	public boolean chargeAccount(String uId, float num) {
-		return false;
+
+	public boolean chargeAccount(String uId, double num) {
+		String sql = "UPDATE user SET u_account=u_account+? WHERE u_id=?";
+		Object[] args = new Object[] { num, uId };
+		int[] argTypes = new int[] { Types.FLOAT, Types.VARCHAR };
+		return template.update(sql, args, argTypes) == 1;
 	}
 }
