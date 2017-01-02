@@ -6,7 +6,6 @@ $(function() {
 	$('#deal').attr({'disabled':'disabled'});
 	$('.cut').each(function(){
 		if ($(this).next().val() == 1){
-			$(this).attr({"disabled":"disabled"});
 			// remove hover effect
 			$(this).removeClass('cut');
 		}
