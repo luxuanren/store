@@ -35,10 +35,10 @@ public class OrderDao {
 		return false;
 	}
 
-	public List<Order> getOrderList(int userId) {
+	public List<Order> getOrderList(int uId) {
 		String sql = "SELECT * FROM orders WHERE u_id=?";
 		final ArrayList<Order> list = new ArrayList<>();
-		template.query(sql, new Object[] { userId }, new int[] { Types.INTEGER }, new RowCallbackHandler() {
+		template.query(sql, new Object[] { uId }, new int[] { Types.INTEGER }, new RowCallbackHandler() {
 
 			@Override
 			public void processRow(ResultSet rs) throws SQLException {

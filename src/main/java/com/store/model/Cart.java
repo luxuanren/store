@@ -8,6 +8,8 @@ import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.store.dao.GoodsDao;
+
 public class Cart {
 	private HashMap<Integer, Integer> goodsMap = new HashMap<>();
 	private HashMap<Integer, Goods> goodsItemMap = new HashMap<>();
@@ -16,11 +18,20 @@ public class Cart {
 		// default constructor
 	}
 	
-	public Cart(String data) {
-		String regex = "(\\d+):(\\d+)";
-		Matcher matcher = Pattern.compile(regex).matcher(data);
-		while (matcher.find()) {
-			goodsMap.put(Integer.valueOf(matcher.group(1)), Integer.valueOf(matcher.group(2)));
+	public Cart(String data, GoodsDao goodsDao) {
+		if (data != null && data.length() > 2) {
+			List<Integer> idList = new ArrayList<>();
+			String regex = "(\\d+):(\\d+)";
+			Matcher matcher = Pattern.compile(regex).matcher(data);
+			while (matcher.find()) {
+				goodsMap.put(Integer.valueOf(matcher.group(1)), Integer.valueOf(matcher.group(2)));
+				idList.add(Integer.valueOf(matcher.group(1)));
+			}
+			// initialize goods item
+			List<Goods> goodsList = goodsDao.getGoodsByIdList(idList);
+			for (Goods goods : goodsList) {
+				goodsItemMap.put(goods.getId(), goods);
+			}
 		}
 	}
 
@@ -33,7 +44,13 @@ public class Cart {
 		}
 		return list;
 	}
-
+    public List<CartItem> getCartList() {
+    	ArrayList<CartItem> list = new ArrayList<>();
+		for (Entry<Integer, Goods> entry : goodsItemMap.entrySet()) {
+			list.add(new CartItem(entry.getValue(), goodsMap.get(entry.getKey())));
+		}
+		return list;
+	}
 	public void setGoodsMap(HashMap<Integer, Integer> goodsMap) {
 		this.goodsMap.putAll(goodsMap);
 	}

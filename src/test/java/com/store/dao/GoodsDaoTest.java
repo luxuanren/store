@@ -41,10 +41,10 @@ public class GoodsDaoTest extends UnitilsJUnit4{
 
 	@Test
 	public void testGetGoodsByType() {
-		List<Goods> list = goodsDao.getGoodsByType(GoodsType.BOOK);
+		List<Goods> list = goodsDao.getGoodsByType(GoodsType.BOOK.toInt());
 		assertSame(3, list.size());
 		
-		list = goodsDao.getGoodsByType(GoodsType.CLOTHS);
+		list = goodsDao.getGoodsByType(GoodsType.CLOTHS.toInt());
 		assertSame(0, list.size());
 	}
 

@@ -27,10 +27,10 @@ public class GoodsDao {
 		return template.update(sql, args, argTypes) == 1;
 	}
 
-	public List<Goods> getGoodsByType(GoodsType type) {
+	public List<Goods> getGoodsByType(int type) {
 		String sql = "SELECT * FROM goods WHERE g_type=?";
 		final ArrayList<Goods> list = new ArrayList<>();
-		template.query(sql, new Object[] { type.toInt() }, new int[] { Types.INTEGER }, new RowCallbackHandler() {
+		template.query(sql, new Object[] { type }, new int[] { Types.INTEGER }, new RowCallbackHandler() {
 
 			@Override
 			public void processRow(ResultSet rs) throws SQLException {
@@ -62,6 +62,8 @@ public class GoodsDao {
 						goods.setInventory(rs.getInt(4));
 						goods.setType(GoodsType.getType(rs.getInt(5)));
 						goods.setValid(rs.getInt(6) == 1);
+						goods.setTitle(rs.getString(7));
+						goods.setDetail(rs.getString(8));
 						list.add(goods);
 					}
 				});

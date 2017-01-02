@@ -1,0 +1,118 @@
+body{
+	margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    font: 14px/1.5 tahoma,arial,'Hiragino Sans GB',\5b8b\4f53,sans-serif;
+}
+#frame{
+    margin-left: 12%;
+    margin-right: 12%;
+    width: auto;
+}
+#userBar{
+	width: 100%;
+    background: #F5F5F5;
+}
+#nav{
+	margin-left: 12%;
+    margin-right: 12%;
+}
+#userBar a{
+	display: inline-block;
+	width: 100px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	color: #6C6C6C;
+    text-decoration: none;
+}
+#userBar a:hover{
+	color: #f40;
+    text-decoration: underline;
+}
+#typeBar{
+    border: solid 1px red;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+#searchBar{
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+#searchBar form{
+	width: 404px;
+	height: 35px;
+    margin-left: auto;
+    margin-right: auto;
+    border: solid 3px #f50
+}
+input#input{
+	width: 354px;
+	font-size: 16px;
+	text-indent: 10px;
+	padding-top: 7px;
+    padding-bottom: 7px;
+	border: none;
+}
+input#input:focus{
+    outline: none;
+    border: none;
+}
+#doSearch{
+	float: right;
+	width: 50px;
+	height: 35px;
+	font-size: 16px;
+	color: #fff;
+	background: #ff5500;
+	border: none;
+}
+#doSearch:hover{
+	cursor: pointer;
+}
+td{
+	padding: 3px;
+	width: 200px;
+}
+.price{
+	 font-weight: 500;
+	 font-size: 20px;
+	 color: #f10215;
+}
+.add, .mark{
+	float: left;
+	color: #f10215;
+	font-size: 13px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	padding-left: 2px;
+	padding-right: 2px;
+	margin-left: 0px !important;
+	margin-right: 0px !important;
+	text-align: center;
+	border: solid 1px #E8E8E8;
+}
+.add:hover, .mark:hover{
+	border: solid 1px #f10215;
+}
+.display{
+	width: auto;
+	height: 150px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	margin-left: 5px;
+	margin-right: 5px;
+	border: solid 2px #ffffff;
+}
+.display:hover{
+	border: solid 2px #E8E8E8;
+}
+.display div{
+	margin: 5px;
+}
+.display label{
+	margin-left: 5px;
+	margin-right: 5px;
+}
+.highlight{
+	border: solid 1px #f10215;
+}

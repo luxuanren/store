@@ -1,0 +1,241 @@
+body{
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    font: 14px/1.5 tahoma,arial,'Hiragino Sans GB',\5b8b\4f53,sans-serif;
+}
+#frame{
+    margin-left: 12%;
+    margin-right: 12%;
+    width: auto;
+}
+#siteNav-bar{
+    width: 100%;
+    background: #F5F5F5;
+}
+#siteNav{
+    margin-left: 12%;
+    margin-right: 12%;
+}
+
+#siteNav div{
+    display: inline-block;
+    margin: 10px;
+    font-size: 15px;
+}
+#siteNav a, .op-list a{
+     color: #6C6C6C;
+     text-decoration: none;
+ }
+#siteNav a:hover, .op-list a:hover{
+    color: #f40;
+    text-decoration: underline;
+}
+#head{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    height: 35px;
+}
+#head h1,#head h3{
+    float: left;
+    display: inline;
+    margin: 0px;
+    line-height: 35px;
+}
+#head h1{
+    font-size: 35px;
+    color: #F40;
+}
+#head h3{
+    font-size: 20px;
+    padding-top: 5px;
+    padding-left: 10px;
+}
+#search{
+    float: right;
+    width: 40%;
+    line-height: 35px;
+    border: solid 3px #f50;
+}
+input#search-info{
+    width: 75%;
+    height: 29px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-size: 16px;
+    text-indent: 10px;
+    border: none;
+}
+input#search-info:focus{
+    outline: none;
+    border: none;
+}
+input#search-btn{
+    float: right;
+    height: 37px;
+    width: 22%;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border: none;
+    color: #ffffff;
+    font-size: 18px;
+    background: #ff5500;
+}
+input#search-btn:hover{
+    cursor: pointer;
+}
+#cartContent{
+    margin-top: 50px;
+}
+.th{
+    display: inline-block;
+    height: 30px;
+    text-align: center;
+}
+.th > div{
+    height: 21px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.tr{
+    display: inline-block;
+    position: relative;
+    height: 120px;
+    text-align: center;
+}
+.item{
+    border: 2px solid white;
+}
+.item:hover{
+    border: 2px solid skyblue;
+}
+.th-ck{
+    width: 10%;
+    text-align: left;
+}
+.th-item{
+    width: 20%;
+}
+.th-info{
+    width: 20%;
+}
+.th-price{
+    width: 10%;
+}
+.th-amount{
+    width: 10%;
+}
+.th-sum{
+    width: 10%;
+}
+.th-op{
+    width: 15%;
+}
+.th-info label, .th-item label{
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+}
+.item{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background: #FCFCFC;
+}
+.alter-div{
+    width: 78px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.alter a{
+    display: inline-block;
+    float: left;
+    width: 17px;
+    height: 23px;
+    text-decoration: none;
+    border: 1px solid #e5e5e5;
+}
+.add:hover{
+    color: #f40;
+    border: 1px solid #f40;
+}
+.cut-hover{
+	color: #f40;
+    border: 1px solid #f40 !important;
+}
+
+.price{
+    color: #f40;
+    font-weight: bold;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0; 
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+.amount{
+    float: left;
+    display: inline-block;
+    width: 39px;
+    height: 15px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    border: 1px solid #aaa;
+    color: #343434;
+    text-align: center;
+    background-color: #fff;
+}
+.title, .detail{
+    word-wrap: break-word;
+    word-break: break-all;
+}
+.th-op a{
+    display: block;
+}
+.container{
+    position: absolute;
+    width: 100%;
+    padding-top: 10px;
+}
+.center-div{
+    position: relative;
+    left: 50%;
+    right: 50%;
+}
+div#summary{
+    z-index: 1;
+    position: fixed;
+    bottom: 0px;
+    height: 40px;
+    width: 76%;
+    margin-left: 12%;
+    margin-right: 12%;
+    background: #e5e5e5;
+    border: solid 1px burlywood;
+}
+#summary span{
+    display: inline-block;
+    margin: 12px;
+}
+#summary a{
+    display: inline-block;
+    padding-top: 8px
+}
+#deal{
+    width: 120px;
+    height: 40px;
+    float: right;
+    font-size: 18px;
+    color: #fff;
+    background: #FF4400;
+    text-align: center;
+    text-decoration: none;
+}
+#padding-div{
+	height: 40px;
+    width: 76%;
+    margin-left: 12%;
+    margin-right: 12%;
+}

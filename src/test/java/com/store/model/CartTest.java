@@ -1,20 +1,29 @@
 package com.store.model;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
 
 import java.util.List;
 import java.util.Map;
 
 import org.junit.Test;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.unitils.spring.annotation.SpringApplicationContext;
+import org.unitils.spring.annotation.SpringBean;
 
+import com.store.dao.GoodsDao;
+@SpringApplicationContext({"dispatcher-servlet.xml","classpath:applicationContext.xml"})
 public class CartTest {
-
+	@SpringApplicationContext
+	private ClassPathXmlApplicationContext context;
+	@SpringBean("goodsDao")
+	private GoodsDao goodsDao;
 	@Test
 	public void testCartString() {
 		int[] goodsIds = new int[]{10001,10002,10003};
 		int[] nums = new int[]{1,2,3};
 		String data = "10001:1,10002:2,10003:3,";
-		Cart cart = new Cart(data);
+		Cart cart = new Cart(data, goodsDao);
 		
 		Map<Integer, Integer> goodsMap = cart.getGoodsMap();
 		for (int i = 0; i < nums.length; i++) {
@@ -25,7 +34,7 @@ public class CartTest {
 	@Test
 	public void	testGetGoodsIdList(){
 		String data = "10001:1,10002:2,10003:3,";
-		Cart cart = new Cart(data);
+		Cart cart = new Cart(data, goodsDao);
 		List<Integer> list = cart.getGoodsIdList();
 		Map<Integer, Integer> goodsMap = cart.getGoodsMap();
 		for (Integer integer : list) {
