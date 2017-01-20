@@ -17,15 +17,11 @@
 <body>
 	<div id="siteNav-bar">
 		<div id="siteNav">
-			<div>
-				<a href="/store/user/information.do">${username}</a>
-			</div>
-			<div>
-				<a href="/store/user/mark.do">收藏夹</a>
-			</div>
-			<div>
-				<a href="/store/user/cart.do">购物车</a>
-			</div>
+			<div><a href="/store/user/information.do">${username}</a></div>
+			<div><a href="/store/user/order.do">我的订单</a></div>
+			<div><a href="/store/user/cart.do">购物车</a></div>
+			<div><a href="/store/user/mark.do">我的收藏</a></div>
+			<div><a href="/store/home.do">商城首页</a></div>
 		</div>
 	</div>
 	<div id="frame">
@@ -88,7 +84,7 @@
 						</div>
 						<div class="tr th-item">
 							<div class="container title">
-								<label>${item.goods.name }</label>
+								<a class="goods-name" href="/store/search/goods.do?gId=${item.goods.id}">${item.goods.name}</a>
 							</div>
 						</div>
 						<div class="tr th-info">
@@ -123,8 +119,8 @@
 						<div class="tr th-op">
 							<div class="container op-list">
 								<div>
-									<a href="/store/user/mark.do">收藏</a>
-									<a href="/store/cart/delete.do">删除</a>
+									<a class="mark">收藏</a>
+									<a class="delete">删除</a>
 								</div>
 							</div>
 						</div>

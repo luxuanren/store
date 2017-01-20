@@ -11,8 +11,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.stereotype.Repository;
 
+import com.store.constant.GoodsType;
 import com.store.model.Goods;
-import com.store.model.GoodsType;
+import com.store.model.TradeItem;
+import com.store.model.TradeList;
 
 @Repository
 public class GoodsDao {
@@ -27,6 +29,13 @@ public class GoodsDao {
 		return template.update(sql, args, argTypes) == 1;
 	}
 
+	public boolean updateGoodsInventory(TradeItem item) {
+		String sql = "UPDATE goods SET g_inventory=g_inventory-? WHERE g_id=?";
+		Object[] args = new Object[] {item.getTradeNum(), item.getGoodsId() };
+		int[] argTypes = new int[] {Types.INTEGER ,Types.INTEGER};
+		return template.update(sql, args, argTypes) == 1;
+	}
+	
 	public List<Goods> getGoodsByType(int type) {
 		String sql = "SELECT * FROM goods WHERE g_type=?";
 		final ArrayList<Goods> list = new ArrayList<>();
@@ -45,6 +54,24 @@ public class GoodsDao {
 			}
 		});
 		return list;
+	}
+	
+	public Goods getGoodsById(int gId) {
+		String sql = "SELECT * FROM goods WHERE g_id=?";
+		final Goods goods = new Goods();
+		template.query(sql, new Object[] { gId }, new int[] { Types.INTEGER }, new RowCallbackHandler() {
+
+			@Override
+			public void processRow(ResultSet rs) throws SQLException {
+				goods.setId(rs.getInt(1));
+				goods.setName(rs.getString(2));
+				goods.setPrice(rs.getDouble(3));
+				goods.setInventory(rs.getInt(4));
+				goods.setType(GoodsType.getType(rs.getInt(5)));
+				goods.setValid(rs.getInt(6) == 1);
+			}
+		});
+		return goods;
 	}
 
 	public List<Goods> getGoodsByKeyword(String keyword) {
@@ -71,8 +98,51 @@ public class GoodsDao {
 	}
 
 	public List<Goods> getGoodsByIdList(List<Integer> goodsIdList) {
+		final List<Goods> list = new ArrayList<>();
+
+		if (goodsIdList == null || goodsIdList.size() == 0) {
+			return list;
+		}else{
+			StringBuilder sqlBuilder = new StringBuilder("SELECT * FROM goods WHERE g_id in(");
+			int length = goodsIdList.size();
+			for (int i = 0; i < length; i++) {
+				sqlBuilder.append("?,");
+			}
+			sqlBuilder.deleteCharAt(sqlBuilder.length() - 1);
+			sqlBuilder.append(")");
+
+			String sql = sqlBuilder.toString();
+			
+			Object[] args = new Object[length];
+
+			for (int i = 0; i < length; i++) {
+				args[i] = goodsIdList.get(i);
+			}
+
+			template.query(sql, args, new RowCallbackHandler() {
+
+				@Override
+				public void processRow(ResultSet rs) throws SQLException {
+					Goods goods = new Goods();
+					goods.setId(rs.getInt(1));
+					goods.setName(rs.getString(2));
+					goods.setPrice(rs.getDouble(3));
+					goods.setInventory(rs.getInt(4));
+					goods.setType(rs.getInt(5));
+					goods.setTitle(rs.getString(6));
+					goods.setDetail(rs.getString(7));
+					list.add(goods);
+				}
+			});
+		}
+		
+		return list;
+	}
+	
+	public List<Goods> getGoodsByIdList(TradeList tradeList) {
 		StringBuilder sqlBuilder = new StringBuilder("SELECT * FROM goods WHERE g_id in(");
-		int length = goodsIdList.size();
+		List<TradeItem> itemList = tradeList.getTradeList();
+		int length = itemList.size();
 		for (int i = 0; i < length; i++) {
 			sqlBuilder.append("?,");
 		}
@@ -84,7 +154,7 @@ public class GoodsDao {
 		Object[] args = new Object[length];
 
 		for (int i = 0; i < length; i++) {
-			args[i] = goodsIdList.get(i);
+			args[i] = itemList.get(i).getGoodsId();
 		}
 
 		template.query(sql, args, new RowCallbackHandler() {

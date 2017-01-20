@@ -19,9 +19,10 @@
 	<div id="userBar">
 		<div id="nav">
 			<a id="user" class="unlogin" userId="${user.id}" href="${path}/user/information.do">${user.username}</a>
-			<a id="order" href="${path}/user/order.do" target="_blank">我的订单</a>
-			<a id="cart" href="${path}/user/cart.do" target="_blank">购物车</a>
-			<a id="mark" href="${path}/user/mark.do" target="_blank">我的收藏</a>
+			<a id="order" href="${path}/user/order.do">我的订单</a>
+			<a id="cart" href="${path}/user/cart.do">购物车</a>
+			<a id="mark" href="${path}/user/mark.do">我的收藏</a>
+			<a href="/store/home.do">商城首页</a>
 		</div>
 	</div>
 	<div id="frame">
@@ -36,13 +37,13 @@
 			<table>
 				<c:forEach var="item" items="${list}">
 
-					<td id="${item.id}">
+					<td id="${item.id}" class="item">
 						<div class="display">
 							<div>
-								<label name="name">${item.name}</label>
+								<a class="goods-name" href="/store/search/goods.do?gId=${item.id}">${item.name}</a>
 							</div>
 							<div>
-								<label name="title">${item.title}</label>
+								<label name="title">${item.detail}</label>
 							</div>
 							<div class="price">
 								￥<label name="price"><fmt:formatNumber
@@ -52,7 +53,7 @@
 								库存&nbsp;<label name="amount" value="${item.inventory}">${item.inventory}</label>
 							</div>
 							<div>
-							    <label class="mark">关注</label>
+							    <label class="mark ${markOp }">${markName }</label>
 								<label class="add">加入购物车</label>
 							</div>
 						</div>

@@ -38,11 +38,10 @@ public class EvaluationDaoTest extends UnitilsJUnit4 {
 	@Test
 	public void testAppendEvaluation() {
 		String appendInfo = "realy good";
-		evaluationDao.appendEvaluation(10001, "luxuanren", appendInfo);
+		evaluationDao.appendEvaluation(10001, "luxuanren", appendInfo, DateUtil.getCurrentTime());
 		List<Evaluation> list = evaluationDao.getEvaluationByGoodId(10001);
 		assertEquals(appendInfo, list.get(0).getAppendInfo());
 		
-		assertEquals(false, evaluationDao.appendEvaluation(10001, "lxr", appendInfo));
 	}
 
 }

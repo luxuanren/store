@@ -1,4 +1,4 @@
-package com.store.model;
+package com.store.constant;
 
 public enum UserLevel {
 	COMMEN(1), BRONZE(2), SILVER(3), GOLDEN(4), DIAMOND(5);

@@ -1,4 +1,4 @@
-package com.store.model;
+package com.store.constant;
 
 public enum GoodsType {
 	NON_TYPE(0), BOOK(1), FOOD(2), CLOTHS(3), ELECTRONIC(4), FURNITURE(5);
@@ -29,20 +29,7 @@ public enum GoodsType {
 
 	@Override
 	public String toString() {
-		switch (this.type) {
-		case 1:
-			return names[1];
-		case 2:
-			return names[2];
-		case 3:
-			return names[3];
-		case 4:
-			return names[4];
-		case 5:
-			return names[5];
-		default:
-			return names[0];
-		}
+		return GoodsType.names[this.type];
 	}
 
 	public int toInt() {

@@ -60,30 +60,30 @@ public class UserDao {
 		return template.update(sql, args, argTypes) == 1;
 	}
 
-	public boolean alterPassword(int uId, String oldPassword, String newPassword) {
+	public boolean alterPassword(int userId, String oldPassword, String newPassword) {
 		String sql = "UPDATE user SET u_password=? WHERE u_id=? AND u_password=?";
-		Object[] args = new Object[] { newPassword, uId, oldPassword };
+		Object[] args = new Object[] { newPassword, userId, oldPassword };
 		int[] argTypes = new int[] { Types.VARCHAR, Types.INTEGER, Types.VARCHAR};
 		return template.update(sql, args, argTypes) == 1;
 	}
 
-	public boolean updateUserIntegral(String uId, double score) {
+	public boolean updateUserIntegral(String userId, double score) {
 		String sql = "UPDATE user SET u_integral=u_integral+? WHERE u_id=?";
-		Object[] args = new Object[] {score, uId };
+		Object[] args = new Object[] {score, userId };
 		int[] argTypes = new int[] { Types.DOUBLE, Types.VARCHAR };
 		return template.update(sql, args, argTypes) == 1;
 	}
 
-	public boolean reduceAccount(String uId, double num) {
+	public boolean reduceAccount(String userId, double num) {
 		String sql = "UPDATE user SET u_account=u_account-? WHERE u_id=?";
-		Object[] args = new Object[] { num, uId };
+		Object[] args = new Object[] { num, userId };
 		int[] argTypes = new int[] { Types.FLOAT, Types.VARCHAR };
 		return template.update(sql, args, argTypes) == 1;
 	}
 
-	public boolean chargeAccount(String uId, double num) {
+	public boolean chargeAccount(String userId, double num) {
 		String sql = "UPDATE user SET u_account=u_account+? WHERE u_id=?";
-		Object[] args = new Object[] { num, uId };
+		Object[] args = new Object[] { num, userId };
 		int[] argTypes = new int[] { Types.FLOAT, Types.VARCHAR };
 		return template.update(sql, args, argTypes) == 1;
 	}

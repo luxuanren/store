@@ -1,19 +1,40 @@
 package com.store.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.google.gson.Gson;
+
 public class TradeItem {
 	private int goodsId;
+	private double price;
 	private int tradeNum;
-	private boolean isEvaluate;
-
+	private double sum;
+	private boolean evaluate;
+	private boolean appendEvaluation;
+	
+	public static void main(String[] args) {
+		TradeItem item = new TradeItem();
+		item.setGoodsId(10000);
+		item.setPrice(20.0);
+		item.setTradeNum(1);
+		item.setSum(20.0);
+		item.setEvaluate(false);
+		item.setAppendEvaluation(false);
+		List<TradeItem> list = new ArrayList<>();
+		list.add(item);
+		Gson gson = new Gson();
+		String json = gson.toJson(list);
+		System.out.println(json);
+	}
 	public TradeItem() {
-		// default contructor
+		// default constructor
 	}
 
-	public TradeItem(String data) {
-		String[] src = data.split(":");
-		goodsId = Integer.valueOf(src[0]);
-		tradeNum = Integer.valueOf(src[1]);
-		isEvaluate = "1".equals(src[2]);
+	public static TradeItem getTradeItem(String json) {
+		Gson gson = new Gson();
+		TradeItem item = gson.fromJson(json, TradeItem.class);
+		return item;
 	}
 
 	public int getGoodsId() {
@@ -33,23 +54,34 @@ public class TradeItem {
 	}
 
 	public boolean isEvaluate() {
-		return isEvaluate;
+		return evaluate;
 	}
 
 	public void setEvaluate(boolean isEvaluate) {
-		this.isEvaluate = isEvaluate;
+		this.evaluate = isEvaluate;
+	}
+    
+	public boolean isAppendEvaluation() {
+		return appendEvaluation;
 	}
 
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append(goodsId).append(":").append(tradeNum).append(":");
-		if (isEvaluate) {
-			builder.append(1);
-		} else {
-			builder.append(0);
-		}
-		return builder.toString();
+	public void setAppendEvaluation(boolean appendEvaluation) {
+		this.appendEvaluation = appendEvaluation;
 	}
 
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public double getSum() {
+		return sum;
+	}
+
+	public void setSum(double sum) {
+		this.sum = sum;
+	}
 }

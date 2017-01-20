@@ -16,24 +16,24 @@ public class CartDaoTest extends UnitilsJUnit4{
 
 	@Test
 	public void testAddCartList() {
-		int uId = 1000;
+		int userId = 1000;
 		String cartList = "10000:1,10001:2";
-		cartDao.addCartList(uId, cartList);
+		cartDao.addCartList(userId, cartList);
 	}
 	
 	@Test
 	public void testGetCartList() {
-		int uId = 1000;
+		int userId = 1000;
 		String cartList = "10000:1,10001:2";
-		assertEquals(cartList, cartDao.getCartList(uId));
+		assertEquals(cartList, cartDao.getCartList(userId));
 	}
 
 	@Test
 	public void testUpdateCart() {
-		int uId = 1000;
+		int userId = 1000;
 		String cartList = "10000:1,10001:2";
-		cartDao.updateCart(uId, cartList);
-		assertEquals(cartList, cartDao.getCartList(uId));
+		cartDao.updateCart(userId, cartList);
+		assertEquals(cartList, cartDao.getCartList(userId));
 	}
 
 }

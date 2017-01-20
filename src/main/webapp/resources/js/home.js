@@ -3,35 +3,16 @@
  */
 $(function() {
 
-	initPage();
-})
-
-function initPage() {
-	
 	var $user = $('#user');
 	var name = new String($user.html());
 	if (name.length == 0) {
 		$user.html("请登录");
-		$('#link').attr("href","/store/login.do");
+		$('#user').attr("href","/store/login.do");
 	} else {
 		$('#user').toggleClass('unlogin');
 	}
-	// initialize userBar
-	$('#cart,#mark').click(function(){
-		$(this).removeClass('highlight');
-	})
-	$('#order,#cart,#mark').click(function(){
-		if($('#user').attr('userId').length == 0){
-			var target = $(this).find('a:first').attr('href');
-			window.location.href = "/store/login.do?target=" + target;
-			return false;
-		}
-	})
-	
+
 	// initialize add button
-	$('#content label[name=amount][value=0]').each(function(){
-		$(this).parent().parent().find('.add').attr("disabled", "disabled");
-	})
 	$('.add').click(function(){
 		if($('#user').attr('userId').length == 0){
 			window.location.href = "/store/login.do";
@@ -46,14 +27,50 @@ function initPage() {
 				}
 			})
 		}
-		
-	})
+	});
 	
-}
+	$('.add-mark').click(function(){
+		var $item = $(this).closest('.item');
+		var goodsId = $item.attr('id');
+		$.get('/store/mark/add.do',{
+			goodsId:goodsId
+		}, function(data){
+			if (data == STATUS.SUCCESS){
+				alert('添加成功');
+			}else{
+				alert('服务器忙，请稍后重试。');
+			}
+		});
+	});
+	$('.delete-mark').click(function(){
+		var $item = $(this).closest('.item');
+		var goodsId = $item.attr('id');
+		$.get('/store/mark/delete.do',{
+			goodsId:goodsId
+		}, function(data){
+			if (data == STATUS.SUCCESS){
+				$item.remove();
+				alert('删除成功');
+			}else{
+				alert('服务器忙，请稍后重试。');
+			}
+		});
+	});
+	
+	$('label[name=amount]').each(function(){
+		if ( $(this).attr('value') == 0){
+			$parent = $(this).closest('.display');
+			$parent.css('background','#E8E8E8');
+			var addBtn = $parent.find('.add:eq(0)');
+			addBtn.removeClass('add').addClass('add-disable').unbind('click');
+		}
+	});
+})
+
 function getGoodsInfo($td){
 	var goods = {};
 	goods.id = $td.parent().attr('id');
-	goods.name  = $td.find('label[name=name]')[0].innerText;
+	goods.name  = $td.find('.goods-name')[0].innerText;
 	goods.title  = $td.find('label[name=title]')[0].innerText;
 	goods.price  = $td.find('label[name=price]')[0].innerText;
 	return goods;

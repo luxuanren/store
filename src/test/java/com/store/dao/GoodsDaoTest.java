@@ -11,8 +11,9 @@ import org.unitils.UnitilsJUnit4;
 import org.unitils.spring.annotation.SpringApplicationContext;
 import org.unitils.spring.annotation.SpringBean;
 
+import com.store.constant.GoodsType;
 import com.store.model.Goods;
-import com.store.model.GoodsType;
+import com.store.model.TradeItem;
 @SpringApplicationContext({"dispatcher-servlet.xml","classpath:applicationContext.xml"})
 public class GoodsDaoTest extends UnitilsJUnit4{
 	@SpringApplicationContext
@@ -30,6 +31,14 @@ public class GoodsDaoTest extends UnitilsJUnit4{
 		goods.setInventory(10);
 		goods.setType(GoodsType.BOOK);
 		goodsDao.addGoods(goods);
+	}
+
+	@Test
+	public void testUpdateGoodsInventory() {
+		TradeItem item = new TradeItem();
+		item.setGoodsId(10000);
+		item.setTradeNum(1);
+		goodsDao.updateGoodsInventory(item);
 	}
 
 	@Test

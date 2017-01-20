@@ -18,33 +18,33 @@ public class MarkDaoTest extends UnitilsJUnit4 {
 
 	@Test
 	public void testAddUserMarks() {
-		int uId = 1000;
+		int userId = 1000;
 		String markList = "10000";
-		markDao.addUserMarks(uId, markList);
+		markDao.addUserMarks(userId, markList);
 	}
 
 	@Test
 	public void testAppendMarks() {
-		int uId = 1000;
-		int gId = 10001;
+		int userId = 1000;
+		int goodsId = 10001;
 		String base = "10000";
-		assertEquals(base, markDao.getMarksByUserId(uId));
-		markDao.appendMarks(uId, gId);
-		assertEquals("10000,10001", markDao.getMarksByUserId(uId));
+		assertEquals(base, markDao.getMarksByUserId(userId));
+		markDao.appendMarks(userId, goodsId);
+		assertEquals("10000,10001", markDao.getMarksByUserId(userId));
 	}
 
 	@Test
 	public void testGetMarksByUserId() {
-		int uId = 1000;
-		assertNotEquals(null, markDao.getMarksByUserId(uId));
+		int userId = 1000;
+		assertNotEquals(null, markDao.getMarksByUserId(userId));
 	}
 
 	@Test
 	public void testUpdateUserMarks() {
-		int uId = 1000;
+		int userId = 1000;
 		String markList = "10000";
-		markDao.updateUserMarks(uId, markList);
-		assertEquals("10000", markDao.getMarksByUserId(uId));
+		markDao.updateUserMarks(userId, markList);
+		assertEquals("10000", markDao.getMarksByUserId(userId));
 	}
 
 }

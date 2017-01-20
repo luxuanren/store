@@ -1,14 +1,13 @@
 package com.store.model;
 
-import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import com.store.constant.OrderStatus;
 
 public class Order {
 	private int id;
 	private String date;
 	private int userId;
-	private ArrayList<TradeItem> tradeList;
+	private OrderStatus status;
+	private TradeList tradeList;
 
 	public int getId() {
 		return id;
@@ -34,16 +33,37 @@ public class Order {
 		this.userId = userId;
 	}
 
-	public ArrayList<TradeItem> getTradeList() {
+	public TradeList getTradeList() {
 		return tradeList;
 	}
 
-	public void setTradeList(String data) {
-		String regex = "\\d+:\\d+:\\d";
-		Matcher matcher = Pattern.compile(regex).matcher(data);
-		tradeList = new ArrayList<>();
-		while (matcher.find()) {
-			tradeList.add(new TradeItem(matcher.group()));
+	public OrderStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(OrderStatus status) {
+		this.status = status;
+	}
+
+	public void setTradeList(TradeList tradeList) {
+		this.tradeList = tradeList;
+	}
+
+	public void markCommence(int goodsId) {
+		for (TradeItem item : tradeList.getTradeList()) {
+			if (item.getGoodsId() == goodsId) {
+				item.setEvaluate(true);
+				break;
+			}
+		}
+	}
+	
+	public void markAppendCommence(int goodsId) {
+		for (TradeItem item : tradeList.getTradeList()) {
+			if (item.getGoodsId() == goodsId) {
+				item.setAppendEvaluation(true);
+				break;
+			}
 		}
 	}
 }

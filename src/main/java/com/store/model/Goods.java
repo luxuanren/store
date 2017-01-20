@@ -1,5 +1,7 @@
 package com.store.model;
 
+import com.store.constant.GoodsType;
+
 public class Goods {
 	private int id;
 	private String name;

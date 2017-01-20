@@ -1,7 +1,8 @@
 var STATUS = {
 	SUCCESS : "true",
 	FAILED : "false",
-	UN_LOGIN : "false"
+	UN_LOGIN : "un_login",
+	INSUFFICIENT: "insufficient"
 }
 function changeTwoDecimal(x) {
 	var f_x = parseFloat(x);

@@ -91,6 +91,19 @@ td{
 	text-align: center;
 	border: solid 1px #E8E8E8;
 }
+.add-disable{
+	float: left;
+	color: #000;
+	font-size: 13px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	padding-left: 2px;
+	padding-right: 2px;
+	margin-left: 0px !important;
+	margin-right: 0px !important;
+	text-align: center;
+	border: solid 1px #E8E8E8;
+}
 .add:hover, .mark:hover{
 	border: solid 1px #f10215;
 }
@@ -115,4 +128,12 @@ td{
 }
 .highlight{
 	border: solid 1px #f10215;
+}
+a.goods-name{
+	margin-left: 5px;
+    margin-right: 5px;
+	color: black;
+}
+a.goods-name:hover{
+	color: #f40;
 }

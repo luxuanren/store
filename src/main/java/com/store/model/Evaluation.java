@@ -1,20 +1,29 @@
 package com.store.model;
 
 public class Evaluation {
-	private boolean isValid;
+	private boolean appendCommence;
 	private int goodsId;
 	private String username;
 	private String evalTime;
 	private String info;
 	private String appendInfo;
+	private String appendEvalTime;
 
 	
-	public boolean isValid() {
-		return isValid;
+	public String getAppendEvalTime() {
+		return appendEvalTime;
 	}
 
-	public void setValid(boolean isValid) {
-		this.isValid = isValid;
+	public void setAppendEvalTime(String appendEvalTime) {
+		this.appendEvalTime = appendEvalTime;
+	}
+
+	public boolean isAppendCommence() {
+		return appendCommence;
+	}
+
+	public void setAppendCommence(boolean appendCommence) {
+		this.appendCommence = appendCommence;
 	}
 
 	public int getGoodsId() {

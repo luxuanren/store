@@ -1,5 +1,7 @@
 package com.store.model;
 
+import com.store.constant.UserLevel;
+
 public class User {
 	private int id;
 	private String username;

@@ -1,0 +1,136 @@
+body{
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    font: 14px/1.5 tahoma,arial,'Hiragino Sans GB',\5b8b\4f53,sans-serif;
+}
+#frame{
+    margin-left: 12%;
+    margin-right: 12%;
+    width: auto;
+    padding-top: 10px;
+}
+#siteNav-bar{
+    width: 100%;
+    background: #F5F5F5;
+}
+#siteNav{
+    margin-left: 12%;
+    margin-right: 12%;
+}
+#siteNav div{
+    display: inline-block;
+    margin: 10px;
+    font-size: 15px;
+}
+#siteNav a, .td-op a{
+    color: #6C6C6C;
+    text-decoration: none;
+}
+#siteNav a:hover, .td-op a:hover{
+    color: #f40;
+    text-decoration: underline;
+}
+#searchBar{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+#searchBar input{
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+#search{
+    width: 250px;
+    text-indent: 10px;
+}
+#head div{
+    text-align: center;
+}
+.order-detail{
+    background: #F5F5F5;
+}
+div.row, div.goods-detail{
+    border: 1px solid #ececec;
+    margin-top: 10px;
+}
+div.row:hover{
+    border: 1px solid skyblue;
+}
+.container{
+    position: absolute;
+    width: 100%;
+    padding-top: 10px;
+}
+.cell{
+    display: inline-block;
+    padding: 0;
+}
+#content .cell{
+    position: relative;
+    height: 120px;
+    text-align: center;
+}
+.order-detail span{
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+a.introduce{
+    display: inline-block;
+    text-decoration: none;
+    word-wrap: break-word;
+    word-break: break-all;
+    color: black;
+}
+a.introduce:hover{
+	color: #f40;
+}
+.price{
+    color: #f40;
+    font-weight: bold;
+}
+.td-op a, .td-op label{
+	display: block;
+	margin-bottom: 10px;
+}
+.td-op a:hover{
+	cursor: pointer;
+}
+.td-goods{
+    width: 40%;
+}
+.td-price{
+    width: 10%;
+}
+.td-amount{
+    width: 10%;
+}
+.td-sum{
+    width: 10%;
+}
+.td-status{
+    width: 12%;
+}
+.td-op{
+    width: 12%;
+}
+
+#comment-div{
+	position: absolute;
+	display: none;
+	width: 400px;
+	height: 100px;
+	border: 1px solid grey;
+}
+#user-comment{
+	width: 394px;
+	height: 73px;
+}
+#discard{
+	height: 20px;
+	float: left;
+}
+#submit{
+	height: 20px;
+	float: right;
+}

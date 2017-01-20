@@ -1,0 +1,120 @@
+body{
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    font: 14px/1.5 tahoma,arial,'Hiragino Sans GB',\5b8b\4f53,sans-serif;
+}
+#frame{
+    margin-left: 12%;
+    margin-right: 12%;
+    width: auto;
+    padding-top: 10px;
+}
+#siteNav-bar{
+    width: 100%;
+    background: #F5F5F5;
+}
+#siteNav{
+    margin-left: 12%;
+    margin-right: 12%;
+}
+#siteNav div{
+    display: inline-block;
+    margin: 10px;
+    font-size: 15px;
+}
+#siteNav a, .op a{
+    color: #6C6C6C;
+    text-decoration: none;
+}
+#siteNav a:hover, .op a:hover{
+    color: #f40;
+    text-decoration: underline;
+}
+#content{
+    border: 1px solid grey;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+#goods-info{
+    display: inline-block;
+    width: 48%;
+}
+#inventory span{
+    margin-left: 10px;
+}
+#goods-info div{
+    margin: 10px;
+}
+#op{
+    display: inline-block;
+    width: 48%;
+}
+#commence{
+    width: 100%;
+}
+#inventory{
+    height: 30%;
+}
+#op-amount{
+    position: relative;
+    height: 25px;
+    margin-top: 10px;
+    text-align: center;
+}
+#op-action{
+    margin-top: 10px;
+}
+#container{
+    position: absolute;
+}
+#alter-div{
+    width: 78px;
+}
+#amount{
+    float: left;
+    height: 15px;
+    width: 39px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    text-align: center;
+    border: 1px solid #aaa;
+}
+#cut, #add{
+    float: left;
+    display: inline-block;
+    width: 17px;
+    height: 23px;
+    text-decoration: none;
+    border: 1px solid #e5e5e5;
+}
+#op a:hover{
+    color: #f40;
+    border: 1px solid #f40;
+    cursor: pointer;
+}
+#op-action a{
+    font-size: 13px;
+    padding: 4px 2px;
+    border: solid 1px #E8E8E8;
+}
+.commence-time{
+    background: #F5F5F5;
+}
+#commence label{
+    display: inline-block;
+    word-break: break-all;
+    margin: 5px;
+}
+.item{
+    margin-bottom: 5px;
+    border: 1px solid skyblue;
+}
+.user-info{
+    background: darkseagreen;
+}
+.price{
+	 font-weight: 500;
+	 font-size: 20px;
+	 color: #f10215;
+}
